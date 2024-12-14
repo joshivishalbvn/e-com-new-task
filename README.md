@@ -112,8 +112,8 @@ For detailed API examples and testing, refer to the API Endpoints Overview below
   - `DELETE /products/<id>/` - Delete a product
 
 - **Add/Delete Images**:
-  - `POST /products/<id>/add_image/` - Add an image
-  - `DELETE /products/<id>/delete_image/` - Delete an image
+  - `POST /products/<product_id>/images/` - Add an image
+  - `DELETE /products/<product_id>/images/<image_id>/` - Delete an image
 
 ### Order APIs
 
