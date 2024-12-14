@@ -7,6 +7,8 @@ from app_modules.orders.task import send_order_confirmation_email
 from app_modules.products.models import Products
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
+
+from app_modules.products.serilizer import ProductSerailizer
  
 user = get_user_model()
 
@@ -59,13 +61,35 @@ class OrderSerailizer(serializers.ModelSerializer):
         send_order_confirmation_email(order_obj.id)
         return order_obj
     
+class OrderDataSerailizer(serializers.ModelSerializer):
+
+    order_products = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.Order
+        fields = (
+            "id",
+            "customer",
+            "order_products",
+            "total_amount",
+        )
+
+    def get_order_products(self,obj):
+        try:
+            products = models.OrderItems.objects.filter(order=obj)
+            print('\033[91m'+'products: ' + '\033[92m', products)
+            return OrderProductDataSerailiser(products,many=True).data
+        except Exception as e:
+            print('\033[91m'+'e: ' + '\033[92m', e)
+            return []
+
+    
 class OrderProductSerializer(serializers.Serializer):
 
     id = serializers.IntegerField()
     quantity = serializers.IntegerField()
 
     def validate(self, attrs):
-        print('\033[91m'+'attrs: ' + '\033[92m', attrs)
         product_id = attrs.get("id")
         requested_quantity = attrs.get("quantity")
 
@@ -83,3 +107,18 @@ class OrderProductSerializer(serializers.Serializer):
         
         return super().validate(attrs)
     
+class OrderProductDataSerailiser(serializers.ModelSerializer):
+
+    product = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.OrderItems
+        fields = (
+            "id",
+            "product",
+            "quantity",
+            "price",
+        )
+
+    def get_product(self,obj):
+        return ProductSerailizer(obj.product).data

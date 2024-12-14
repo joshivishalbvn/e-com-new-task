@@ -8,11 +8,19 @@ from rest_framework import status
 
 class OrderViewSet(ModelViewSet):
 
-    serializer_class = serilizer.OrderSerailizer
     model_class = models.Order
 
     def get_serializer_class(self):
-        return self.serializer_class
+        actions = {
+            "list": serilizer.OrderDataSerailizer,
+            "retrieve": serilizer.OrderDataSerailizer,
+            "create": serilizer.OrderSerailizer,
+            "destroy": serilizer.OrderSerailizer,
+            "update": serilizer.OrderSerailizer,
+        }
+        if self.action in actions:
+            self.serializer_class = actions.get(self.action)
+        return super().get_serializer_class()
     
     def get_queryset(self):
         return models.Order.objects.all()
@@ -25,7 +33,7 @@ class OrderViewSet(ModelViewSet):
     
     def create(self, request, *args, **kwargs):
         print('\033[91m'+'self.get_serializer_class: ' + '\033[92m', self.get_serializer_class)
-        serializer = self.serializer_class(
+        serializer = self.get_serializer(
             data=request.data,
             context = self.get_serializer_context(),
         )
