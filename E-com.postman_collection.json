@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "833f54bb-df88-448d-b075-5415a7d46af0",
+		"name": "E-com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30660874"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "Vishal",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Joshi",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "vishal@yopmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password1",
+									"value": "test@123",
+									"type": "text"
+								},
+								{
+									"key": "password2",
+									"value": "test@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/register/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "vishal@yopmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/?available_stock=True",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "start_price",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "end_price",
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "available_stock",
+									"value": "True"
+								},
+								{
+									"key": "name",
+									"value": "Product 1",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "about this product",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Product 4",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/ADMIN/Downloads/download.jpeg"
+								},
+								{
+									"key": "decription",
+									"value": "about this product",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/products/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Product 2",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/products/3/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Product 2",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/products/4/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "customer",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "order_products",
+									"value": "{\"id\":1,\"quantity\":10}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/orders/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Images",
+			"item": [
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/1/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"images"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
