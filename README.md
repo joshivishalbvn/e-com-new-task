@@ -131,7 +131,7 @@ For detailed API examples and testing, refer to the API Endpoints Overview below
 
 - Filter by price and stock availability:
   ```
-  GET /products/?price=<min>,<max>&stock=<min>,<max>
+  GET /products/?start_price=<min>,end_price=<max>&available_stock=True,
   ```
 
 - Search by name and description:
