@@ -329,6 +329,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/1/images/2/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"images",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
